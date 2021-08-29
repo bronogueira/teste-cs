@@ -8,12 +8,12 @@ class Detail extends React.Component {
     constructor(props) {
         super(props);
 
-        let { data } = props.data;
+        let data = props?.data?.data;
 
         this.state = {
             logIsLoaded: false,
             veiculosIsLoaded: false,
-            idAgenda: data.id_carragenda,
+            idAgenda: data?.id_carragenda,
             itemsLog: [],
             itemsVeiculos: [],
         };
