@@ -1,5 +1,4 @@
-import DataGrid, { Column, Grouping, GroupPanel, MasterDetail } from 'devextreme-react/data-grid';
-import 'devextreme/data/odata/store';
+import DataGrid, { Column, FilterRow, Grouping, GroupPanel, MasterDetail } from 'devextreme-react/data-grid';
 import 'devextreme/dist/css/dx.light.css';
 import Head from 'next/head';
 import React from 'react';
@@ -20,7 +19,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const headers = { 'cod_grupoempresa': 1, 'cod_empresa': 1, 'cod_filial': 1 };
+    const headers = {
+      'cod_grupoempresa': 1,
+      'cod_empresa': 1,
+      'cod_filial': 1,
+    };
 
     fetch(url, { headers })
       .then(response => response.json())
@@ -34,42 +37,42 @@ class App extends React.Component {
 
   render() {
 
-    if (!this.state.isLoaded) {
-      return <div>Carregando...</div>;
-    } else {
-      return (
-        <div className={styles.body}>
-          <Head>
-            <title>Teste CS</title>
-            <meta name="description" content="Testando REACT com NEXT.JS e DevExtreme" />
-            <link rel="icon" href="/favicon.ico" />
-          </Head>
+    if (!this.state.isLoaded) return <div>Carregando...</div>;
 
-          <main className={styles.container}>
-            <DataGrid id="grid-container"
-              dataSource={this.state.items}
-              keyExpr="id_carragenda"
-              showBorders={true}>
+    return (
+      <div className={styles.body}>
+        <Head>
+          <title>Teste CS</title>
+          <meta name="description" content="Testando REACT com NEXT.JS e DevExtreme" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-              <GroupPanel visible={true} emptyPanelText='Testando REACT com NEXT.JS e DevExtreme' />
+        <main className={styles.container}>
+          <DataGrid id="grid-container"
+            dataSource={this.state.items}
+            keyExpr="id_carragenda"
+            showBorders={true}>
 
-              <Grouping autoExpandAll={true} contextMenuEnabled='true' />
+            <GroupPanel visible={true} emptyPanelText='Testando REACT com NEXT.JS e DevExtreme' />
 
-              <MasterDetail enabled={true} component={Detail} />
+            <FilterRow visible={false} applyFilter="auto" />
 
-              <Column dataField="id_carragenda" width={90} caption="Nº" />
-              <Column dataField="nr_pedido" width={100} caption="Nº Pedido" />
-              <Column dataField="desc_item" min-width={270} caption="Produto" />
-              <Column dataField="nome_fornecedor" min-width={270} caption="Fornecedor" />
-              <Column dataField="nome_pessoa" min-width={200} caption="Motorista" />
-              <Column dataField="data" dataType="date" width={120} caption="Data" />
-              <Column dataField="periodo" width={120} caption="Período" />
-              <Column dataField="duracao" width={100} caption="Duração" />
-            </DataGrid>
-          </main>
-        </div>
-      );
-    }
+            <Grouping autoExpandAll={true} contextMenuEnabled='true' />
+
+            <MasterDetail enabled={true} component={Detail} />
+
+            <Column dataField="id_carragenda" width={90} caption="Nº" />
+            <Column dataField="nr_pedido" width={100} caption="Nº Pedido" />
+            <Column dataField="desc_item" min-width={270} caption="Produto" />
+            <Column dataField="nome_fornecedor" min-width={270} caption="Fornecedor" />
+            <Column dataField="nome_pessoa" min-width={200} caption="Motorista" />
+            <Column dataField="data" dataType="date" width={120} caption="Data" />
+            <Column dataField="periodo" width={120} caption="Período" />
+            <Column dataField="duracao" width={100} caption="Duração" />
+          </DataGrid>
+        </main>
+      </div>
+    );
   }
 }
 
