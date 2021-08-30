@@ -59,7 +59,6 @@ const Home = () => {
 
             {dados && dados.map(e => buildGrafico(e.registros))}
 
-            <br />
             <div className={styles.main}>
                 <Link href="/">
                     <a>Voltar</a>
