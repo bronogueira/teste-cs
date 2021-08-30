@@ -1,6 +1,7 @@
 import DataGrid, { Column, FilterRow, Grouping, GroupPanel, MasterDetail } from 'devextreme-react/data-grid';
 import 'devextreme/dist/css/dx.light.css';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
 import 'whatwg-fetch';
 import styles from '../styles/Home.module.css';
@@ -37,12 +38,25 @@ class App extends React.Component {
 
   render() {
 
-    if (!this.state.isLoaded) return <div>Carregando...</div>;
+    if (!this.state.isLoaded) return (
+      <div className={styles.body}>
+        <div className={styles.container}>Carregando...</div>
+        <ul>
+          <li>
+            <Link href="/grafico">
+              <a>Se isso não for o suficiente, clique aqui</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+
+    );
 
     return (
       <div className={styles.body}>
         <Head>
           <title>Teste CS</title>
+          {/* <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" /> */}
           <meta name="description" content="Testando REACT com NEXT.JS e DevExtreme" />
           <link rel="icon" href="/favicon.ico" />
         </Head>
@@ -71,6 +85,9 @@ class App extends React.Component {
             <Column dataField="duracao" width={100} caption="Duração" />
           </DataGrid>
         </main>
+            - <Link href="/grafico">
+              <a>Se isso não for o suficiente, clique aqui</a>
+            </Link>
       </div>
     );
   }

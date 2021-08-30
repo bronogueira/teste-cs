@@ -4,6 +4,7 @@ import Chart, {
 } from 'devextreme-react/chart';
 import 'devextreme/dist/css/dx.light.css';
 import Head from 'next/head';
+import Link from 'next/link';
 import React from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import firebase from '../../firebase/clientApp';
@@ -32,7 +33,8 @@ const Home = () => {
                     <Label visible={false} />
                 </ValueAxis>
 
-                <Series valueField="quantidade"
+                <Series
+                    valueField="quantidade"
                     argumentField="situacao"
                     type="bar"
                     color="#79cac4">
@@ -56,6 +58,13 @@ const Home = () => {
             </Head>
 
             {dados && dados.map(e => buildGrafico(e.registros))}
+
+            <br />
+            <div className={styles.container}>
+                <Link href="/">
+                    <a>Voltar</a>
+                </Link>
+            </div>
         </div>
     );
 }
