@@ -47,7 +47,7 @@ const Home = () => {
                 <Export enabled={true} />
             </Chart>
         );
-    }
+    };
 
     return (
         <div className={styles.body}>

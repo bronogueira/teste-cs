@@ -69,7 +69,7 @@ class App extends React.Component {
 
             <GroupPanel visible={true} emptyPanelText='Testando REACT com NEXT.JS e DevExtreme' />
 
-            <FilterRow visible={false} applyFilter="auto" />
+            <FilterRow visible={true} applyFilter="auto" />
 
             <Grouping autoExpandAll={true} contextMenuEnabled='true' />
 
